@@ -1,10 +1,13 @@
 package mybtrade;
 
+import java.util.Date;
+
 public class TradeCanceled extends AbstractEvent {
 
     private Long id;
     private Long salesNum;
     private String status;
+    private Date cancelDate = new Date();
 
     public TradeCanceled(){
         super();
@@ -31,5 +34,13 @@ public class TradeCanceled extends AbstractEvent {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCancelDate() {
+        return cancelDate;
+    }
+
+    public void setCancelDate(Date cancelDate) {
+        this.cancelDate = cancelDate;
     }
 }
