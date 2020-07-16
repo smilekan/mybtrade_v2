@@ -32,6 +32,21 @@ public class PolicyHandler{
             tradingRepository.save(trading);
         }
     }
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void wheneverPurchaseCanceled_Purchasecancel(@Payload PurchaseCanceled purchaseCanceled){
+
+        if(purchaseCanceled.isMe()){
+            System.out.println("##### listener canceled : " + purchaseCanceled.toJson());
+            Trading trading = tradingRepository.findBySalesNum(purchaseCanceled.getSalesNum());
+            trading.setSalesNum(purchaseCanceled.getSalesNum());
+            trading.setStatus(purchaseCanceled.getStatus());
+            trading.setCancelDate(new Date());
+
+            tradingRepository.save(trading);
+        }
+    }
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPurchased_Takeready(@Payload Purchased purchased){
 
