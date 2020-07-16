@@ -34,7 +34,11 @@ import java.util.List;
      public @ResponseBody Trading purchaseCancel(@RequestParam(name = "salesNum") Long salesNum)
              throws Exception {
          System.out.println("======== /tradings/purchasecancel called ========");
-
+         try {
+             Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
          Trading tradingUpdate = tradingRepository.findBySalesNum(salesNum);
          tradingUpdate.setStatus("Deposited");
          tradingUpdate.setCancelDate(new Date());
