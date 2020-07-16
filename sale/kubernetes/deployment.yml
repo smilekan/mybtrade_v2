@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sale
-          image: 052937454741.dkr.ecr.ap-northeast-2.amazonaws.com/admin08-mybtrade/sale:v3
+          image: 052937454741.dkr.ecr.ap-northeast-2.amazonaws.com/admin08-mybtrade/sale:v6
           ports:
             - containerPort: 8080
           readinessProbe:
